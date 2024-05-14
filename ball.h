@@ -17,14 +17,8 @@ typedef enum DIRECTION{
     LEFT = 0
 }direction;
 
-/*initializes a ball with:
-x = 0,
-y = 0,
-direction = {RIGHT, UP}*/
-void ball_init(Ball *ball);
-
 /*initializes a ball with custom values*/
-void ball_custom_init(Ball *ball, int x, int y, direction dirX, direction dirY);
+void ball_init(Ball *ball, int x, int y, direction dirX, direction dirY);
 
 /*moves the ball: 
  1 in the x direction
