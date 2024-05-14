@@ -1,37 +1,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "ball.h"
+#include "player.h"
 
 int main(int argc, char const *argv[])
 {
-    char input; 
+    char input[100]; 
     bool run = 1;
 
-    Ball* ball;
-    ball = calloc(1, sizeof(Ball));
+    Player* player;
+    player = calloc(1, sizeof(Player));
 
-    ball_init(ball);
+    player_init(player);
 
     while(run){
-        input = getc(stdin);
-        switch(input){
-            case 'w':
-                collision_X(ball);
-                break;
-            case 'p':
-                collision_Y(ball);
-                break;
-            case 'e':
-                run = 0;
-                break;
-            default:
-                move_custom(ball, 2, 3);
-                printf("x: %d, dirX: %c\n", ball->x, (ball->direction[0]==RIGHT) ? 'R' : 'L');
-                printf("y: %d, dirY: %c\n\n", ball->y, (ball->direction[1]==UP) ? 'U' : 'D');
-        }
+        int x = 0;
+        int y = 0;
+        fgets(input, 99, stdin);
+        x = atoi(input);
+
+        player_move(player, x);
+
+        printf("x: %d, width: %d\n", player->x, player->width);
+        printf("y: %d\n\n", player->y);
 
     }
 
-    free(ball);
+    free(player);
     return 0;
 }

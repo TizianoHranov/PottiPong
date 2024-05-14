@@ -2,12 +2,12 @@
 
 
 
-void move(Ball *ball){
+void ball_move(Ball *ball){
     (ball->direction[0] == RIGHT) ? ball->x++ : ball->x--;
     (ball->direction[1] == UP) ? ball->y++ : ball->y--;
 }
 
-void move_custom(Ball *ball, int a, int b){
+void ball_move_custom(Ball *ball, int a, int b){
     (ball->direction[0] == RIGHT) ? ball->x+=a : (ball->x-=a);
     (ball->direction[1] == UP) ? ball->y+=b : (ball->y-=b);
 }

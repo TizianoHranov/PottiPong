@@ -3,8 +3,6 @@
 
 #include <stdbool.h>
 
-
-/*saves all relevant data of the playing ball*/
 typedef struct ball
 {
     int x, y;
@@ -19,7 +17,7 @@ typedef enum DIRECTION{
     LEFT = 0
 }direction;
 
-/*initializes a ball with
+/*initializes a ball with:
 x = 0,
 y = 0,
 direction = {RIGHT, UP}*/
@@ -31,13 +29,13 @@ void ball_custom_init(Ball *ball, int x, int y, direction dirX, direction dirY);
 /*moves the ball: 
  1 in the x direction
  1 in the y direction*/
-void move(Ball *ball);
+void ball_move(Ball *ball);
 
 /*moves the ball:
 a in the x direction
 b in the y direction
 */
-void move_custom(Ball *ball, int a, int b);
+void ball_move_custom(Ball *ball, int a, int b);
 
 /*inverts the direction for x*/
 void collision_X(Ball *ball);
