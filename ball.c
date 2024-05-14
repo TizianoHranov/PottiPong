@@ -20,14 +20,7 @@ void collision_Y(Ball *ball){
     ball->direction[1] = !(ball->direction[1]);
 }
 
-void ball_init(Ball *ball){
-    ball->x = 0;
-    ball->y = 0;
-    ball->direction[0] = UP;
-    ball->direction[1] = RIGHT;
-}
-
-void ball_custom_init(Ball *ball, int x, int y, direction dirX, direction dirY){
+void ball_init(Ball *ball, int x, int y, direction dirX, direction dirY){
     ball->x = x;
     ball->y = y;
     ball->direction[0] = dirX;
