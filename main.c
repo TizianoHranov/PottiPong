@@ -25,7 +25,7 @@ int main(int argc, char const *argv[])
                 run = 0;
                 break;
             default:
-                move(ball);
+                move_custom(ball, 2, 3);
                 printf("x: %d, dirX: %c\n", ball->x, (ball->direction[0]==RIGHT) ? 'R' : 'L');
                 printf("y: %d, dirY: %c\n\n", ball->y, (ball->direction[1]==UP) ? 'U' : 'D');
         }

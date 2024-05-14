@@ -31,7 +31,13 @@ void ball_custom_init(Ball *ball, int x, int y, direction dirX, direction dirY);
 /*moves the ball: 
  1 in the x direction
  1 in the y direction*/
-int move(Ball *ball);
+void move(Ball *ball);
+
+/*moves the ball:
+a in the x direction
+b in the y direction
+*/
+void move_custom(Ball *ball, int a, int b);
 
 /*inverts the direction for x*/
 void collision_X(Ball *ball);
