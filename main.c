@@ -22,7 +22,15 @@ int main(int argc, char const *argv[])
                 run = false;
                 break;
             case 'a':
-                game_stats(game, ALL);
+                if (!bcm2835_init()){
+                    printf("bcm2835_init failed. Are you running as root??\n");
+                    return 1;
+                }
+
+                if (!bcm2835_spi_begin()){
+                    printf("bcm2835_spi_begin failed. Are you running as root??\n");
+                    return 1;
+                }
                 break;
             case 'f':
                 game_exit(&game);
