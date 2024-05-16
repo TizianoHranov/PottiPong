@@ -63,18 +63,15 @@ print("init worked")
 
 try:
 
+    m7219.gfx_set_px(0,0,GFX_INVERT)
+    time.sleep(5)
+    m7219.gfx_set_px(1,1,GFX_INVERT)
+    time.sleep(5)
     m7219.gfx_set_all(GFX_ON)
 
     time.sleep(5)
 
     print("set all done")
-
-    # Display a stationary message
-    m7219.static_message("Welcome!")
-    time.sleep(2)
-    m7219.clear_all()
-
-    print("welcome done")
 
     # Cycle through the range of brightness levels - up then down
     m7219.brightness(0)
@@ -96,7 +93,7 @@ try:
 
     # Random flashing lights (Hollywood's version of a computer)
     for loop in range(16):
-        for matrix in range(8):
+        for matrix in range(2):
             for col in range(8):
                 m7219.send_matrix_reg_byte(matrix, col+1, randrange(0x100))
                 time.sleep(0.001)
@@ -104,98 +101,6 @@ try:
     time.sleep(1)
 
     print("random flashing lights done")
-
-    # Display all characters from the font individually
-    for char in range(0x100):
-        m7219.send_matrix_letter(7-(char%8), char)
-        time.sleep(0.02)
-    time.sleep(0.5)
-    m7219.clear_all()
-    time.sleep(0.5)
-
-    print("character BS done")
-
-    # Displaying 'graphics' (a simulated ECG) by a low-level method
-    heartbeat = [0x10, 0x10, 0x0F, 0xFC, 0x30, 0x08, 0x10, 0x10]
-    for loop in range(2):
-        for matrix in range(7, -1, -1):
-            for col in range(8):
-                m7219.send_matrix_reg_byte((matrix-1)%8, col+1, 0x00)
-                m7219.send_matrix_reg_byte(matrix, col+1, heartbeat[col])
-                time.sleep(0.15)
-
-    # Clear each matrix in turn
-    for matrix in range(7, -1, -1):
-        m7219.clear([matrix])
-        time.sleep(0.2)
-    time.sleep(1)
-
-    print("matrix shinanigans done")
-
-    # Print text characters using gfx_ method
-    text="MAX 7219"
-    for letter in range(len(text)):
-        m7219.gfx_letter(ord(text[letter]), 8*letter)
-    m7219.gfx_render()
-    time.sleep(1)
-
-    # Using gfx_ methods allows easy subsequent manipulation eg inverting text
-    for matrix in range(3,8):
-        for col in range(8):
-            m7219.gfx_set_col(8*matrix+col, GFX_INVERT)
-        m7219.gfx_render()
-    time.sleep(1)
-
-    # Draw some line patterns and demonstrate graphics scrolling
-    for fill in (GFX_OFF, GFX_ON):
-        m7219.gfx_set_all(GFX_OFF)
-        m7219.gfx_line(0, 3, 63, 3, GFX_ON)
-        m7219.gfx_line(0, 4, 63, 4, GFX_ON)
-        for matrix in range(8):
-             m7219.gfx_line(8*matrix+3 ,0 ,8*matrix+3 ,7 , GFX_ON)
-             m7219.gfx_line(8*matrix+4 ,0 ,8*matrix+4 ,7 , GFX_ON)
-        m7219.gfx_render()
-        time.sleep(1)
-        for index, scroll in enumerate([DIR_LD, DIR_L, DIR_LU, DIR_U, DIR_RU, DIR_R, DIR_RD, DIR_D]):
-            for repeat in range(8):
-                m7219.gfx_scroll(scroll, 8*index, 8, 0, 8, fill)
-                m7219.gfx_render()
-                time.sleep(0.05)
-    m7219.gfx_set_all(GFX_OFF)
-    m7219.gfx_render()
-
-    # Draw random lines in both 'on' & 'off' modes
-    x_new = 32
-    y_new = 0
-    for ink in [GFX_ON, GFX_OFF]:
-        for line in range(128):
-            x_old, y_old = x_new, y_new
-            x_new, y_new = randrange(64), 7 - y_old
-            m7219.gfx_line(x_old, y_old, x_new, y_new, ink)
-            m7219.gfx_render()
-            time.sleep(0.1)
-    time.sleep(1)
-    m7219.gfx_set_all(GFX_OFF)
-    m7219.gfx_render()
-
-    # Printing text in 'invert' mode allows easy subsequent erasure (eg to scroll it over a background)
-    for x_s in range(16, 41):
-        m7219.gfx_line(x_s, 7, x_s + 7, 0)
-    text = " Raspberry Pi "
-    rasp = [0x03, 0x05, 0x39, 0x46, 0xAA, 0x94, 0xAA, 0x46, 0x39, 0x05, 0x03]
-    length = len(text)
-    ext = len(rasp)
-    for position in range(64, -8*length-2*ext-1, -1):
-        m7219.gfx_sprite(rasp, position, GFX_INVERT)
-        for letter in range(length):
-            m7219.gfx_letter(ord(text[letter]), ext+position+8*letter, GFX_INVERT)
-        m7219.gfx_sprite(rasp, ext+position+8*length, GFX_INVERT)
-        m7219.gfx_render()
-        time.sleep(0.1)
-        m7219.gfx_sprite(rasp, position, GFX_INVERT)
-        for letter in range(length):
-            m7219.gfx_letter(ord(text[letter]), ext+position+8*letter, GFX_INVERT)
-        m7219.gfx_sprite(rasp, ext+position+8*length, GFX_INVERT)
 
     # Similarly graphics drawn eg with gfx_sprite can be erased and scrolled by using 'invert' mode
     m7219.gfx_set_all(GFX_OFF)
