@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "pottiPong.h"
+//#include "pottiPong.h"
+#include <stdbool.h>
 #include "bcm2835.h"
 #include "max7219.h"
 
@@ -17,13 +18,6 @@ int main(int argc, char const *argv[])
     char input; 
     bool run = 1;
 
-    Game* game;
-    int ball_xy[2] = {4, 16}; //middle
-    int player1_xyw[3] = {2, 4, 4};
-    int player2_xyw[3] = {2, 28, 4};
-    int dimensions_game[2] = {8, 32};
-
-    game_init(&game, ball_xy, player1_xyw, player2_xyw, RIGHT, DOWN, 3, dimensions_game);
     if (!bcm2835_init())
     {
       printf("bcm2835_init failed. Are you running as root??\n");
@@ -37,7 +31,7 @@ int main(int argc, char const *argv[])
     }
     bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
     bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
-    bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_128); // The default
+    bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_65536); // The default
     bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
     bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
 
@@ -58,7 +52,7 @@ int main(int argc, char const *argv[])
 
                 break;
             case 'f':
-                game_exit(&game);
+
                 break;
         }
     }
