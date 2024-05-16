@@ -628,28 +628,28 @@ if __name__ == "__main__":
             clear_all()
     except IndexError:
         # If no arguments given, show help text
-        print "MAX7219array.py"
-        print "Scrolls a message across an array of MAX7219 8x8 LED boards"
-        print "Run syntax:"
-        print "  python MAX7219array.py message [repeats [speed [direction [font]]]]"
-        print "    or, if the file has been made executable with chmod +x MAX7219array.py :"
-        print "      ./MAX7219array.py message [repeats [speed [direction [font]]]]"
-        print "Parameters:"
-        print "  (none)               : displays this help information"
-        print "  message              : any text to be displayed on the array"
-        print "                         if message is more than one word, it must be enclosed in 'quotation marks'"
-        print "                         Note: include blank space(s) at the end of 'message' if it is to be displayed multiple times"
-        print "  repeats (optional)   : number of times the message is scrolled"
-        print "                         repeats = 0 scrolls indefinitely until <Ctrl<C> is pressed"
-        print "                         if omitted, 'repeats' defaults to 0 (indefinitely)"
-        print "  speed (optional)     : how fast the text is scrolled across the array"
-        print "                         1 (v.slow) to 9 (v.fast) inclusive (not necessarily integral)"
-        print "                         if omitted, 'speed' defaults to 3"
-        print "  direction (optional) : direction the text is scrolled"
-        print "                         L or R - if omitted, 'direction' defaults to L"
-        print "  font (optional)      : font to use for the displayed text"
-        print "                         CP437, SINCLAIRS, LCD or TINY only - default 'font' if not recognized is CP437"
-        print "MAX7219array.py can also be imported as a module to provide a wider range of functions for driving the array"
-        print "  See documentation within the script for details of these functions, and how to setup the library and the array"
+        print ("MAX7219array.pyprint "))
+        print ("Scrolls a message across an array of MAX7219 8x8 LED boardsprint ")
+        print ("Run syntax:")
+        print ("  python MAX7219array.py message [repeats [speed [direction [font]]]]")
+        print ("    or, if the file has been made executable with chmod +x MAX7219array.py :")
+        print ("      ./MAX7219array.py message [repeats [speed [direction [font]]]]")
+        print ("Parameters:")
+        print ("  (none)               : displays this help information")
+        print ("  message              : any text to be displayed on the array")
+        print ("                         if message is more than one word, it must be enclosed in 'quotation marks'")
+        print ("                         Note: include blank space(s) at the end of 'message' if it is to be displayed multiple times")
+        print ("  repeats (optional)   : number of times the message is scrolled")
+        print ("                         repeats = 0 scrolls indefinitely until <Ctrl<C> is pressed")
+        print ("                         if omitted, 'repeats' defaults to 0 (indefinitely)")
+        print ("  speed (optional)     : how fast the text is scrolled across the array")
+        print ("                         1 (v.slow) to 9 (v.fast) inclusive (not necessarily integral)")
+        print ("                         if omitted, 'speed' defaults to 3")
+        print ("  direction (optional) : direction the text is scrolled")
+        print ("                         L or R - if omitted, 'direction' defaults to L")
+        print ("  font (optional)      : font to use for the displayed text")
+        print ("                         CP437, SINCLAIRS, LCD or TINY only - default 'font' if not recognized is CP437")
+        print ("MAX7219array.py can also be imported as a module to provide a wider range of functions for driving the array")
+        print ("  See documentation within the script for details of these functions, and how to setup the library and the array")
                                                                
 
