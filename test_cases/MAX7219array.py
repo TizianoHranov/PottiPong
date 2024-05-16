@@ -628,7 +628,7 @@ if __name__ == "__main__":
             clear_all()
     except IndexError:
         # If no arguments given, show help text
-        print ("MAX7219array.pyprint "))
+        print ("MAX7219array.pyprint ")
         print ("Scrolls a message across an array of MAX7219 8x8 LED boardsprint ")
         print ("Run syntax:")
         print ("  python MAX7219array.py message [repeats [speed [direction [font]]]]")
