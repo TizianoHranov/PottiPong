@@ -14,6 +14,17 @@ uint8_t chan = 0x00;
 int readADC(uint8_t chan);
 float volts_adc(int adc);
 
+/*
+
+
+
+IT JUST WORKS!
+
+
+
+
+*/
+
 
 int main(int argc, char const *argv[])
 {
