@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
-//#include "pottiPong.h"
 #include <stdbool.h>
-#include "bcm2835.h"
+#include <unistd.h>
+#include <bcm2835.h>
+
+#include "pottiPong.h"
 #include "max7219.h"
 
 uint8_t start = 0x01;
@@ -34,8 +36,6 @@ int main(int argc, char const *argv[])
     bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_65536); // The default
     bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
     bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
-
-    
     
     while(run){
         input = getc(stdin);
@@ -44,14 +44,13 @@ int main(int argc, char const *argv[])
                 run = false;
                 break;
             case 'a':
-                printf("here we go:\n");
-                for(uint8_t i=0; i<10; i++) {
-                    printf("jetzt vor readADC\n");
-                    int adc = readADC(chan);
-                    printf("jetzt NACH readADC\n");
-                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n",chan,adc,volts_adc(adc));
+                for(int i = 0; i < 50; i++){
+                    usleep(1000*100);
+                    int adc_val0 = readADC(0);
+                    int adc_val1 = readADC(1);
+                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n", 0, adc_val0, volts_adc(adc));
+                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n", 0, adc_val1, volts_adc(adc));
                 }
-                printf("for is glaufen\n");
                 break;
             case 'f':
 
