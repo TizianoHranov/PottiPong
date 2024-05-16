@@ -48,8 +48,8 @@ int main(int argc, char const *argv[])
                     usleep(1000*100);
                     int adc_val0 = readADC(0);
                     int adc_val1 = readADC(1);
-                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n", 0, adc_val0, volts_adc(adc));
-                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n", 0, adc_val1, volts_adc(adc));
+                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n", 0, adc_val0, volts_adc(adc_val0));
+                    printf("ADC level on channel %02x is: %04x (%0.2f v)\n", 0, adc_val1, volts_adc(adc_val1));
                 }
                 break;
             case 'f':
