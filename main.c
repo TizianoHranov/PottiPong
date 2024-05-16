@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "pottiPong.h"
+#include "bcm2835.h"
+#include "max7219.h"
 
 uint8_t start = 0x01;
 uint8_t end = 0x00;
