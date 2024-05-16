@@ -9,7 +9,9 @@ uint8_t chan = 0x00;
 int readADC(uint8_t chan){
     char buf[] = {start, (0x08|chan)<<4,end};
     char readBuf[3];
+    printf("transfering now!\n");
     bcm2835_spi_transfernb(buf,readBuf,3);
+    printf("transfer finished!\n");
     return ((int)readBuf[1] & 0x03) << 8 | (int) readBuf[2];
 }
 
@@ -52,9 +54,9 @@ int main(int argc, char const *argv[])
                 run = false;
                 break;
             case 'a':
-                
-                printf("volts[0]: %f", volts_adc(readADC(0)));
-                printf("volts[1]: %f", volts_adc(readADC(0)));
+                printf("here we go:\n");
+                printf("volts[0]: %f\n", volts_adc(readADC(0)));
+                printf("volts[1]: %f\n\n", volts_adc(readADC(0)));
                 
                 
 
