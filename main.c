@@ -30,7 +30,6 @@ int main(int argc, char const *argv[])
         }
     }
     return 0;
-<<<<<<< HEAD
 }
 
 /*
@@ -46,6 +45,3 @@ typedef enum
 
 für Leds:
 */
-=======
-}
->>>>>>> c2ba8d50ec66e731d4a1bb82eaf9e3eb1e360c85
