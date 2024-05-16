@@ -2,6 +2,10 @@
 #include <stdio.h>
 #include "pottiPong.h"
 
+uint8_t start = 0x01;
+uint8_t end = 0x00;
+uint8_t chan = 0x00;
+
 int readADC(uint8_t chan){
     char buf[] = {start, (0x08|chan)<<4,end};
     char readBuf[3];

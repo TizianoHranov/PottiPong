@@ -1,5 +1,6 @@
 #include "pottiPong.h"
 
+
 void game_init(Game** ptr_game, int ball_xy[2], int player1_xyw[3], int player2_xyw[3], direction dirX, direction dirY, int difficulty, int dimensions_screen[2]){
     *ptr_game = calloc(1, sizeof(Game));
     Game* game = *ptr_game;
