@@ -20,3 +20,11 @@ data = [data[i:i+32] for i in range(0, len(data), 32)]
 print("Received data:")
 for row in data:
     print(row)
+
+# Send acknowledgment message back to sender
+ack_message = b"Acknowledgment: Data received successfully"
+ack_pipe = os.open("/tmp/ack_pipe", os.O_WRONLY | os.O_NONBLOCK)
+os.write(ack_pipe, ack_message)
+os.close(ack_pipe)
+
+print("Acknowledgment sent.")
