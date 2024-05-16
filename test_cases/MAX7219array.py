@@ -123,7 +123,7 @@ from random import randrange
 from MAX7219fonts import CP437_FONT, SINCLAIRS_FONT, LCD_FONT, TINY_FONT
 
 # IMPORTANT: User must specify the number of MAX7219 matrices here:
-NUM_MATRICES = 4                   # Number of separate MAX7219 matrices
+NUM_MATRICES = 2                   # Number of separate MAX7219 matrices
 
 # Optional: It is also possible to change the default font for all the library functions:
 DEFAULT_FONT = CP437_FONT          # Note: some fonts only contain characters in chr(32)-chr(126) range
