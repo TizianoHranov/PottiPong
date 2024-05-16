@@ -63,7 +63,7 @@ print("init worked")
 
 try:
 
-    gfx_set_all(GFX_ON)
+    m7219.gfx_set_all(GFX_ON)
 
     time.sleep(5)
 
