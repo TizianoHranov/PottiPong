@@ -11,16 +11,6 @@ uint8_t chan = 0x00;
 int readADC(uint8_t chan);
 float volts_adc(int adc);
 
-int readADC(uint8_t chan){
-  char buf[] = {start, (0x08|chan)<<4,end};
-  char readBuf[3];
-  bcm2835_spi_transfernb(buf,readBuf,3);
-  return ((int)readBuf[1] & 0x03) << 8 | (int) readBuf[2];
-}
-
-float volts_adc(int adc) {
-  return (float)adc*3.3f/1023.0f;
-}
 
 int main(int argc, char const *argv[])
 {
@@ -74,6 +64,18 @@ int main(int argc, char const *argv[])
     }
     return 0;
 }
+
+int readADC(uint8_t chan){
+  char buf[] = {start, (0x08|chan)<<4,end};
+  char readBuf[3];
+  bcm2835_spi_transfernb(buf,readBuf,3);
+  return ((int)readBuf[1] & 0x03) << 8 | (int) readBuf[2];
+}
+
+float volts_adc(int adc) {
+  return (float)adc*3.3f/1023.0f;
+}
+
 
 /*
 für ADC:
