@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include "ball.h"
 #include "player.h"
-#include "bcm2835.h"
+#include <bcm2835.h>
 #include "max7219.h"
 
 
