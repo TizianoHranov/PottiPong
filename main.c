@@ -1,11 +1,12 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
-#include <unistd.h>
-#include <bcm2835.h>
+#include <stdbool.h> 
+#include <unistd.h> //sleep
 
-#include "pottiPong.h"
-#include <max7219.h>
+#include <bcm2835.h> //ADC
+#include <max7219.h> //LED_matrix
+
+#include "pottiPong.h" //the GAME
 
 uint8_t start = 0x01;
 uint8_t end = 0x00;
