@@ -2,6 +2,17 @@
 #include <stdio.h>
 #include "pottiPong.h"
 
+int readADC(uint8_t chan){
+    char buf[] = {start, (0x08|chan)<<4,end};
+    char readBuf[3];
+    bcm2835_spi_transfernb(buf,readBuf,3);
+    return ((int)readBuf[1] & 0x03) << 8 | (int) readBuf[2];
+}
+
+float volts_adc(int adc) {
+  return (float)adc*3.3f/1023.0f;
+}
+
 int main(int argc, char const *argv[])
 {
     char input; 
@@ -14,7 +25,22 @@ int main(int argc, char const *argv[])
     int dimensions_game[2] = {8, 32};
 
     game_init(&game, ball_xy, player1_xyw, player2_xyw, RIGHT, DOWN, 3, dimensions_game);
+    if (!bcm2835_init()){
+        printf("bcm2835_init failed. Are you running as root??\n");
+        return 1;
+    }
 
+    if (!bcm2835_spi_begin()){
+        printf("bcm2835_spi_begin failed. Are you running as root??\n");
+        return 1;
+    }
+
+    bcm2835_spi_setBitOrder(BCM2835_SPI_BIT_ORDER_MSBFIRST);      // The default
+    bcm2835_spi_setDataMode(BCM2835_SPI_MODE0);                   // The default
+    bcm2835_spi_setClockDivider(BCM2835_SPI_CLOCK_DIVIDER_65536); // The default
+    bcm2835_spi_chipSelect(BCM2835_SPI_CS0);                      // The default
+    bcm2835_spi_setChipSelectPolarity(BCM2835_SPI_CS0, LOW);      // the default
+    
     while(run){
         input = getc(stdin);
         switch(input){
@@ -22,15 +48,12 @@ int main(int argc, char const *argv[])
                 run = false;
                 break;
             case 'a':
-                if (!bcm2835_init()){
-                    printf("bcm2835_init failed. Are you running as root??\n");
-                    return 1;
-                }
+                
+                printf("volts[0]: %f", volts_adc(readADC(0)));
+                printf("volts[1]: %f", volts_adc(readADC(0)));
+                
+                
 
-                if (!bcm2835_spi_begin()){
-                    printf("bcm2835_spi_begin failed. Are you running as root??\n");
-                    return 1;
-                }
                 break;
             case 'f':
                 game_exit(&game);
