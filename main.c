@@ -46,14 +46,18 @@ int main(int argc, char const *argv[])
             case 'a':
                 printf("here we go:\n");
                 for(uint8_t i=0; i<10; i++) {
+                    printf("jetzt vor readADC\n");
                     int adc = readADC(chan);
+                    printf("jetzt NACH readADC\n");
                     printf("ADC level on channel %02x is: %04x (%0.2f v)\n",chan,adc,volts_adc(adc));
                 }
-
+                printf("for is glaufen\n");
                 break;
             case 'f':
 
                 break;
+            default:
+                printf("aus is\n");
         }
     }
     return 0;
