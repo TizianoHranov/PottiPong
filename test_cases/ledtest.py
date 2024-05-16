@@ -68,6 +68,8 @@ try:
     time.sleep(2)
     m7219.clear_all()
 
+    print("welcome done")
+
     # Cycle through the range of brightness levels - up then down
     m7219.brightness(0)
     m7219.static_message("Bright ?")
@@ -77,10 +79,14 @@ try:
             time.sleep(0.1)
         time.sleep(1)
 
+    print("brightness done")
+
     # Clear the whole display and reset brightness
     m7219.clear_all()
     m7219.brightness(3)
     time.sleep(1)
+
+    print("reset done")
 
     # Random flashing lights (Hollywood's version of a computer)
     for loop in range(16):
@@ -91,6 +97,8 @@ try:
     m7219.clear_all()
     time.sleep(1)
 
+    print("random flashing lights done")
+
     # Display all characters from the font individually
     for char in range(0x100):
         m7219.send_matrix_letter(7-(char%8), char)
@@ -99,87 +107,7 @@ try:
     m7219.clear_all()
     time.sleep(0.5)
 
-    # Scroll characters in each of 4 directions
-    for matrix in range(8):
-        m7219.send_matrix_letter(matrix, 72 - matrix)
-    time.sleep(0.5)
-    letter_offset=0
-    for dir in (DIR_L, DIR_R, DIR_U, DIR_D):
-        for stage in range(8):
-            for matrix in range(8):
-                m7219.send_matrix_shifted_letter(matrix, 72 - matrix + letter_offset, 73 - matrix - letter_offset, stage, dir)
-            time.sleep(0.1)
-        letter_offset = 1 - letter_offset
-    for dir in (DIR_R, DIR_L, DIR_D, DIR_U):
-        for stage in range(8):
-            for matrix in range(8):
-                m7219.send_matrix_shifted_letter(matrix, 72 - matrix - letter_offset, 71 - matrix + letter_offset, stage, dir)
-            time.sleep(0.1)
-        letter_offset = 1 - letter_offset
-    for matrix in range(8):
-        m7219.send_matrix_letter(matrix, 72 - matrix)
-    time.sleep(1)
-    m7219.clear_all()
-
-    # Scroll only part of a display
-    Floors = ["B", "G", "1", "2"]
-    m7219.static_message("Floor: " + Floors[0])
-    time.sleep(1)
-    for floor, display in enumerate(Floors[:-1]):
-        for stage in range(8):
-            m7219.send_matrix_shifted_letter(0, ord(display), ord(Floors[floor+1]), stage, DIR_D)
-            time.sleep(0.1)
-    m7219.static_message("Floor: " + Floors[-1])
-    time.sleep(1)
-    m7219.clear_all()
-
-    # Horizontally scroll and repeat a long message
-    for dir in [DIR_L, DIR_R]:
-        for speed in [3,6,9]:
-            m7219.scroll_message_horiz("Speed:"+chr(48+speed)+" ", speed/3 , speed, dir)
-        time.sleep(1)
-
-    # Vertically transition (scroll) between different lines of a message
-    for speed in [3,6,9]:
-        m7219.static_message("Speed: "+chr(48+speed))
-        time.sleep(1)
-        m7219.scroll_message_vert("Speed: "+chr(48+speed), "Line 2",speed, DIR_U)
-        time.sleep(0.25)
-        m7219.scroll_message_vert("Line 2", "Line 3", speed, DIR_U)
-        time.sleep(0.25)
-        m7219.scroll_message_vert("Line 3", "Speed: "+chr(48+speed), speed, DIR_U)
-        time.sleep(1)
-        m7219.scroll_message_vert("Speed: "+chr(48+speed), "Line 5", speed, DIR_D)
-        time.sleep(0.25)
-        m7219.scroll_message_vert("Line 5", "Line 6", speed, DIR_D)
-        time.sleep(0.25)
-        m7219.scroll_message_vert("Line 6", "Speed: "+chr(48+speed), speed, DIR_D)
-        time.sleep(1)
-    m7219.clear_all()
-    time.sleep(1)
-
-    # Wipe/fade effects
-    m7219.static_message("ABCDEFGH")
-    time.sleep(1)
-    for trans in (DIR_U, DIR_RU, DIR_R, DIR_RD, DIR_D, DIR_LD, DIR_L, DIR_LU):
-        m7219.wipe_message("ABCDEFGH", "IJKLMNOP" ,4, trans)
-        time.sleep(0.5)
-        m7219.wipe_message("IJKLMNOP", "ABCDEFGH" ,4, trans)
-        time.sleep(0.5)
-    time.sleep(1)
-    for repeat in range(2):
-        m7219.wipe_message("ABCDEFGH", "Dissolve" ,4, DISSOLVE)
-        time.sleep(0.5)
-        m7219.wipe_message("Dissolve", "ABCDEFGH" ,4, DISSOLVE)
-        time.sleep(0.5)
-    time.sleep(1)
-    m7219.clear_all()
-
-    # Different fonts available in fonts.py
-    m7219.scroll_message_horiz("CP437_FONT : ABCDEFGH abcdefgh 1234567890 +++ ", 2, 7.5, DIR_L, CP437_FONT)
-    m7219.scroll_message_horiz("LCD_FONT : ABCDEFGH abcdefgh 1234567890 +++ ", 2, 7.5, DIR_L, LCD_FONT)
-    m7219.scroll_message_horiz("SINCLAIRS_FONT : ABCDEFGH abcdefgh 1234567890 +++ ", 2, 7.5, DIR_L, SINCLAIRS_FONT)
-    m7219.scroll_message_horiz("TINY_FONT : ABCDEFGH abcdefgh 1234567890 +++ ", 2, 7.5, DIR_L, TINY_FONT)
+    print("character BS done")
 
     # Displaying 'graphics' (a simulated ECG) by a low-level method
     heartbeat = [0x10, 0x10, 0x0F, 0xFC, 0x30, 0x08, 0x10, 0x10]
@@ -195,6 +123,8 @@ try:
         m7219.clear([matrix])
         time.sleep(0.2)
     time.sleep(1)
+
+    print("matrix shinanigans done")
 
     # Print text characters using gfx_ method
     text="MAX 7219"
