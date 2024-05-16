@@ -5,7 +5,7 @@
 #include <bcm2835.h>
 
 #include "pottiPong.h"
-#include "max7219.h"
+#include <max7219.h>
 
 uint8_t start = 0x01;
 uint8_t end = 0x00;
@@ -13,18 +13,6 @@ uint8_t chan = 0x00;
 
 int readADC(uint8_t chan);
 float volts_adc(int adc);
-
-/*
-
-
-
-IT JUST WORKS!
-
-
-
-
-*/
-
 
 int main(int argc, char const *argv[])
 {
