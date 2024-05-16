@@ -63,6 +63,12 @@ print("init worked")
 
 try:
 
+    gfx_set_all(GFX_ON)
+
+    time.sleep(5)
+
+    print("set all done")
+
     # Display a stationary message
     m7219.static_message("Welcome!")
     time.sleep(2)
