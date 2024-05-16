@@ -2,7 +2,7 @@
 #include <string.h>
 #include <unistd.h>
 #include <stdint.h>
-#include <armbianio.h>
+#include "armbianio.h"
 #include "max7219.h"
 //
 // MAX7219 LED Matrix controller library
