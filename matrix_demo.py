@@ -48,9 +48,7 @@ def main():
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
             break
 
-        MY_CUSTOM_BITMAP_FONT = [
-            data
-        ]
+        MY_CUSTOM_BITMAP_FONT = data
 
         with canvas(device) as draw:
             # Note that "\0" is the zero-th character in the font (i.e the only one)
