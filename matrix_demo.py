@@ -27,12 +27,19 @@ def main():
 
     fifo = 'my_fifo'
 
+    # Create the named pipe (FIFO)
+    if not os.path.exists(fifo):
+        os.mkfifo(fifo)
+
     while True:
+
         # Open FIFO for reading
         try:
             with open(fifo, 'rb') as f:
                 data = f.read(32 * 4)  # Read 32 integers (each 4 bytes)
-                integers = struct.unpack('32i', data)
+                flat_integers = struct.unpack('32i', data)
+                # Convert flat list to 2D array
+                integers = [flat_integers[i:i+32] for i in range(0, len(flat_integers), 32)]
                 # Process the received data
                 print(f"Received data: {integers}")
         except FileNotFoundError:
@@ -47,6 +54,8 @@ def main():
         except FileNotFoundError:
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
             break
+
+        time.sleep(1)
 
         MY_CUSTOM_BITMAP_FONT = data
 

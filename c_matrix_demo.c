@@ -6,12 +6,15 @@
 
 int main() {
     char *fifo = "my_fifo";
-    int data[32];
+    int data[1][32];
     char ack[10];
+
+    // Create the named pipe (FIFO)
+    mkfifo(fifo, 0666);
 
     // Initialize data with some values
     for (int i = 0; i < 32; i++) {
-        data[i] = i;  // Example pattern
+        data[0][i] = i;  // Example pattern
     }
 
     while (1) {
