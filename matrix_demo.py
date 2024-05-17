@@ -29,9 +29,9 @@ def main():
                 print(f"Received data: {integers}")
 
                 # Draw received data on LED matrix
-                with canvas(device) as draw:
-                    for x, value in enumerate(integers):
-                        draw.point((x, value), fill="white")
+                #with canvas(device) as draw:
+                #    for x, value in enumerate(integers):
+                #        draw.point((x, value), fill="white")
 
                 draw.point((0, 0xff), fill="white")
                 draw.point((1, 0x01), fill="white")
@@ -43,7 +43,7 @@ def main():
                 draw.point((7, 0x00), fill="white")
                 draw.point((8, 0x00), fill="white")
                 draw.point((8, 0xff), fill="white")
-                
+
         except FileNotFoundError:
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
             break
