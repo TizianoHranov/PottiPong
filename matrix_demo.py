@@ -25,20 +25,22 @@ def main():
 
     device = max7219(serial, cascaded=4, block_orientation=90, blocks_arranged_in_reverse_order=True)
 
-    MY_CUSTOM_BITMAP_FONT = [
-        [
-            0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-            0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3c, 0x00
+    while True:
+
+        MY_CUSTOM_BITMAP_FONT = [
+            [
+                0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
+                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3c, 0x00
+            ]
         ]
-    ]
 
-    with canvas(device) as draw:
-        # Note that "\0" is the zero-th character in the font (i.e the only one)
-        legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
+        with canvas(device) as draw:
+            # Note that "\0" is the zero-th character in the font (i.e the only one)
+            legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
 
-    time.sleep(5)
+        time.sleep(5)
 
 if __name__ == "__main__":
     try:
