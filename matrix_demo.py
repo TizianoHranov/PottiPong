@@ -19,7 +19,7 @@ import struct
 
 
 
-def demo(n, block_orientation, rotate, inreverse):
+def main():
     # create matrix device
     serial = spi(port=0, device=0, gpio=noop())
 
@@ -39,3 +39,9 @@ def demo(n, block_orientation, rotate, inreverse):
         legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
 
     time.sleep(5)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except KeyboardInterrupt:
+        pass
