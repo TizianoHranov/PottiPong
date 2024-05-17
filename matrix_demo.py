@@ -31,27 +31,21 @@ def main():
         try:
             with open(fifo, 'rb') as f:
                 # Read data from FIFO
-                data = f.read(256)  # Read 256 bytes (8x32 matrix)
+                data = f.read(256)  # Read 256 bytes (32x8 matrix)
                 # Unpack 256 unsigned bytes from the data buffer
                 integers = struct.unpack('256B', data)
-                # Convert flat list to 2D array (8x32)
-                matrix = [integers[i:i+32] for i in range(0, len(integers), 32)]
+                # Convert flat list to 2D array (32x8)
+                matrix = [integers[i:i+8] for i in range(0, len(integers), 8)]
                 print(f"Received data: {matrix}")
         except FileNotFoundError:
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
             break
 
-        MY_CUSTOM_BITMAP_FONT = integers
-
         with canvas(device) as draw:
-            #for y, row in enumerate(matrix):
-                #for x, value in enumerate(row):
-                    #if value:
-                        #draw.point((x, y), fill="white")
-            draw.point((16, 0), fill="white")
-            draw.point((31, 1), fill="white")
-            draw.point((0, 7), fill="white")
-            draw.point((0, 5), fill="white")
+            for y, row in enumerate(matrix):
+                for x, value in enumerate(row):
+                    if value:
+                        draw.point((x, y), fill="white")
 
 if __name__ == "__main__":
     try:

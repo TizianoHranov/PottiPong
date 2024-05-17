@@ -7,7 +7,7 @@
 
 int main() {
     char *fifo = "my_fifo";
-    int data[8][32];
+    int data[32][8];
     char ack[10];
 
     // Create the named pipe (FIFO) if it doesn't exist
@@ -24,10 +24,12 @@ int main() {
         // Initialize data with some values
         cnt = cnt % 0xff;
         cnt++;
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 32; j++) {
-                if (i % 2 == 0 && j % 3 == 1) {
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(j%2 == 0){
                     data[i][j] = 1;
+                } else {
+                    data[i][j] = 0;
                 }
             }
         }
