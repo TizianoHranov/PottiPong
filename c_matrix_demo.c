@@ -3,13 +3,11 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/stat.h>  // Include this header for mkfifo
-
-//IT WORKED!!!!
+#include <sys/stat.h>
 
 int main() {
     char *fifo = "my_fifo";
-    int data[32];
+    int data[32][8];
     char ack[10];
 
     // Create the named pipe (FIFO) if it doesn't exist
@@ -24,13 +22,17 @@ int main() {
 
     while (1) {
         // Initialize data with some values
-        cnt = cnt%0xff;
+        cnt = cnt % 0xff;
         cnt++;
-        for (int i = 0; i < 32; i++)
-        {
-            data[i] = i+cnt;
+        for (int i = 0; i < 32; i++) {
+            for (int j = 0; j < 8; j++) {
+                if(i%2 && j%4){
+                    data[i][j] = 1;
+                } else {
+                    data[i][j] = 0;
+                }
+            }
         }
-
 
         // Open FIFO for writing
         int fd = open(fifo, O_WRONLY);
@@ -47,8 +49,8 @@ int main() {
         }
         close(fd);
 
-        // Delay for 1 second
-        usleep(1000*100);
+        // Delay for 100 ms
+        usleep(1000 * 100);
     }
 
     return 0;
