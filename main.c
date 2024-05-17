@@ -45,6 +45,7 @@ int main(int argc, char const *argv[])
                 break;
             case 'a':
                 for(int i = 0; i < 50; i++){
+                  printf("in for loop\n");
                     usleep(1000*100);
                     int adc_val0 = readADC(0);
                     int adc_val1 = readADC(1);
