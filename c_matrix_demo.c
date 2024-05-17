@@ -30,7 +30,7 @@ int main() {
 
         for (int i = 0; i < 32; i++) {
             for (int j = 0; j < 8; j++) {
-                if(i%2 == 0 && j%2 == 1){
+                if(j%2 == 1){
                     data[i][j] = 1;
                 }
             }
