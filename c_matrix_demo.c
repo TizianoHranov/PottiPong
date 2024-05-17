@@ -48,7 +48,7 @@ int main() {
         close(fd);
 
         // Delay for 1 second
-        sleep(0.1);
+        sleep(1);
     }
 
     return 0;
