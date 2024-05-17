@@ -19,7 +19,7 @@ from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_
 def demo(n, block_orientation, rotate, inreverse):
     # create matrix device
     serial = spi(port=0, device=0, gpio=noop())
-    device = max7219(serial, 4, 90, 0, true)
+    device = max7219(serial, 4, 90, 0, True)
 
     print("Created device")
 
