@@ -51,7 +51,7 @@ def main():
     os.write(ack_pipe, ack_message)
     os.close(ack_pipe)
 
-print("Acknowledgment sent.")
+    print("Acknowledgment sent.")
 
     while True:
 
