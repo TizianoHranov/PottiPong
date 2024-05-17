@@ -26,10 +26,8 @@ int main() {
         cnt++;
         for (int i = 0; i < 32; i++) {
             for (int j = 0; j < 8; j++) {
-                if(i%2 && j%4){
+                if(i%2 == 0 && j%3 == 1){
                     data[i][j] = 1;
-                } else {
-                    data[i][j] = 0;
                 }
             }
         }
@@ -49,7 +47,7 @@ int main() {
         }
         close(fd);
 
-        // Delay for 100 ms
+        // Delay for 1 second
         usleep(1000 * 100);
     }
 
