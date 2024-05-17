@@ -29,7 +29,7 @@ def main():
                 # Unpack 256 unsigned integers from the data buffer
                 points = struct.unpack('256B', data)
                 # Convert flat list to 2D array
-                matrix = [[points[i + j*32] for i in range(32)] for j in range(8)]
+                matrix = [[points[i + x*8] for i in range(8)] for x in range(32)]
                 print(f"Received data: {matrix}")
         except FileNotFoundError:
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
@@ -37,8 +37,8 @@ def main():
 
         with canvas(device) as draw:
             # Draw the points on the LED matrix
-            for y, row in enumerate(matrix):
-                for x, value in enumerate(row):
+            for x, row in enumerate(matrix):
+                for y, value in enumerate(row):
                     if value != 0:
                         draw.point((x, y), fill="white")
 

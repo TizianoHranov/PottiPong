@@ -7,7 +7,7 @@
 
 int main() {
     char *fifo = "my_fifo";
-    unsigned char data[32][8];
+    unsigned char data[32][8]; // Updated array dimensions
 
     // Create the named pipe (FIFO) if it doesn't exist
     if (access(fifo, F_OK) == -1) {
@@ -21,8 +21,8 @@ int main() {
 
     while (1) {
         // Initialize data with some values
-        for (int y = 0; y < 8; y++) {
-            for (int x = 0; x < 32; x++) {  
+        for (int x = 0; x < 32; x++) {
+            for (int y = 0; y < 8; y++) {  
                 if(x%2 == 0 && y%2 == 0){
                     data[x][y] = 1;
                 } else if (x%2 != 0 && y%2 == 1){
