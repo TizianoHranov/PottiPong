@@ -24,6 +24,11 @@ int main() {
 
     while (1) {
         // Initialize data with some values
+        for (int i = 0; i < 32; i++)
+        {
+            data[0][i] = 0;
+        }
+        
         for (int i = 0; i < 32; i++) {
             for(int j = 0; j < i; j++){
                 data[0][i] += 2^j;  // 0x00, 0x01, 0x02, .... 0xff
