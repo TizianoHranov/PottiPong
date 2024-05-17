@@ -32,7 +32,7 @@ int main() {
         data[0][1] = 1;
         
         for (int i = 2; i < 32; i++) {
-            data[0][i] = data[0][i-1] + 2*data[0][i];  // 0x00, 0x01, 0x03, 0x07 .... 0xff
+            data[0][i] = data[0][i-1] + 2*data[0][i-1];  // 0x00, 0x01, 0x03, 0x07 .... 0xff
         }
 
 
