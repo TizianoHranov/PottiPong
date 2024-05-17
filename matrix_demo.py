@@ -25,19 +25,28 @@ def main():
 
     device = max7219(serial, cascaded=4, block_orientation=90, blocks_arranged_in_reverse_order=True)
 
-
+    fifo = 'my_fifo'
 
     while True:
-        with open(fifo, 'rb') as f:
-            data = f.read(32 * 4)  # Read 32 integers (each 4 bytes)
-            integers = struct.unpack('32i', data)
-            # Process the received data
-            print(f"Received data: {integers}")
+        # Open FIFO for reading
+        try:
+            with open(fifo, 'rb') as f:
+                data = f.read(32 * 4)  # Read 32 integers (each 4 bytes)
+                integers = struct.unpack('32i', data)
+                # Process the received data
+                print(f"Received data: {integers}")
+        except FileNotFoundError:
+            print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
+            break
 
         # Open FIFO for writing acknowledgment
-        with open(fifo, 'wb') as f:
-            ack_message = b'ACK'
-            f.write(ack_message)
+        try:
+            with open(fifo, 'wb') as f:
+                ack_message = b'ACK'
+                f.write(ack_message)
+        except FileNotFoundError:
+            print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
+            break
 
         MY_CUSTOM_BITMAP_FONT = [
             data
