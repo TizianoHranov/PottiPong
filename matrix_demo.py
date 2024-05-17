@@ -33,16 +33,15 @@ def main():
                 #    for x, value in enumerate(integers):
                 #        draw.point((x, value), fill="white")
 
-                    draw.point((0, 0xff), fill="white")
-                    draw.point((1, 0x01), fill="white")
-                    draw.point((2, 0xf3), fill="white")
-                    draw.point((3, 0x08), fill="white")
-                    draw.point((4, 0x10), fill="white")
-                    draw.point((5, 0x13), fill="white")
-                    draw.point((6, 0x18), fill="white")
-                    draw.point((7, 0x00), fill="white")
-                    draw.point((8, 0x00), fill="white")
-                    draw.point((8, 0xff), fill="white")
+                    draw.point((0, 0), fill="white")
+                    draw.point((1, 1), fill="white")
+                    draw.point((2, 1), fill="white")
+                    draw.point((2, 2), fill="white")
+                    draw.point((3, 3), fill="white")
+                    draw.point((4, 4), fill="white")
+                    draw.point((5, 5), fill="white")
+                    draw.point((6, 6), fill="white")
+                    draw.point((7, 7), fill="white")
 
         except FileNotFoundError:
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
