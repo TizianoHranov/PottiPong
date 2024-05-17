@@ -25,8 +25,7 @@ def demo(n, block_orientation, rotate, inreverse):
 
     device = max7219(serial, cascaded=4, block_orientation=90, blocks_arranged_in_reverse_order=True)
 
-    while True:
-        # Open read end of the pipe
+    # Open read end of the pipe
         read_fd = os.open("/tmp/my_pipe", os.O_RDONLY)
 
         # Read data from pipe
@@ -53,6 +52,9 @@ def demo(n, block_orientation, rotate, inreverse):
         os.close(ack_pipe)
 
         print("Acknowledgment sent.")
+
+    while True:
+        
 
         MY_CUSTOM_BITMAP_FONT = [
             [
