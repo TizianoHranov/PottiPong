@@ -24,6 +24,7 @@ int main() {
     }
 
     while (1) {
+        sleep(1);
         // Open FIFO for writing
         int fd = open(fifo, O_WRONLY);
         if (fd == -1) {

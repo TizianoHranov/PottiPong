@@ -63,8 +63,6 @@ def main():
             # Note that "\0" is the zero-th character in the font (i.e the only one)
             legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
 
-        time.sleep(5)
-
 if __name__ == "__main__":
     try:
         main()
