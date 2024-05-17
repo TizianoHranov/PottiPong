@@ -1,10 +1,8 @@
 import os
 import struct
-import time
 from luma.led_matrix.device import max7219
 from luma.core.interface.serial import spi, noop
 from luma.core.render import canvas
-from luma.core import legacy
 
 def main():
     # create matrix device
@@ -22,26 +20,20 @@ def main():
         try:
             with open(fifo, 'rb') as f:
                 # Read data from FIFO
-                data = f.read(32)  # Read 32 bytes (1x32 matrix)
-                # Unpack 32 unsigned integers from the data buffer
-                integers = struct.unpack('32B', data)
-                # Convert flat list to 2D array
-                print(f"Received data: {integers}")
+                data = f.read(256)  # Read 256 bytes (32*8)
+                # Unpack data into a 2D array
+                points = struct.unpack('256B', data)
+                points = [points[i:i+8] for i in range(0, len(points), 8)]
+                print("Received data:")
+                for row in points:
+                    print(row)
 
-                # Draw received data on LED matrix
+                # Draw received points on LED matrix
                 with canvas(device) as draw:
-                #    for x, value in enumerate(integers):
-                #        draw.point((x, value), fill="white")
-
-                    draw.point((0, 0), fill="white")
-                    draw.point((1, 1), fill="white")
-                    draw.point((2, 1), fill="white")
-                    draw.point((2, 2), fill="white")
-                    draw.point((3, 3), fill="white")
-                    draw.point((4, 4), fill="white")
-                    draw.point((5, 5), fill="white")
-                    draw.point((6, 6), fill="white")
-                    draw.point((7, 7), fill="white")
+                    for x in range(len(points)):
+                        for y in range(len(points[x])):
+                            if points[x][y] != 0:
+                                draw.point((x, y), fill="white")
 
         except FileNotFoundError:
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
