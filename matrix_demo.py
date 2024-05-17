@@ -25,43 +25,22 @@ def main():
 
     device = max7219(serial, cascaded=4, block_orientation=90, blocks_arranged_in_reverse_order=True)
 
-    # Open read end of the pipe
-    read_fd = os.open("/tmp/my_pipe", os.O_RDONLY)
 
-    # Read data from pipe
-    size = 8 * 32 * 4  # Size of 8x32 integer array in bytes (assuming int is 4 bytes)
-    data_bytes = os.read(read_fd, size)
-
-    # Close read end of pipe
-    os.close(read_fd)
-
-    # Unpack binary data into a 2D list
-    data = struct.unpack('256i', data_bytes)  # Assuming int is 4 bytes
-
-    # Reshape data into a 2D list
-    data = [data[i:i+32] for i in range(0, len(data), 32)]
-
-    print("Received data:")
-    for row in data:
-        print(row)
-
-    # Send acknowledgment message back to sender
-    ack_message = b"Acknowledgment: Data received successfully"
-    ack_pipe = os.open("/tmp/ack_pipe", os.O_WRONLY | os.O_NONBLOCK)
-    os.write(ack_pipe, ack_message)
-    os.close(ack_pipe)
-
-    print("Acknowledgment sent.")
 
     while True:
+        with open(fifo, 'rb') as f:
+            data = f.read(32 * 4)  # Read 32 integers (each 4 bytes)
+            integers = struct.unpack('32i', data)
+            # Process the received data
+            print(f"Received data: {integers}")
+
+        # Open FIFO for writing acknowledgment
+        with open(fifo, 'wb') as f:
+            ack_message = b'ACK'
+            f.write(ack_message)
 
         MY_CUSTOM_BITMAP_FONT = [
-            [
-                0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00, 0x00, 
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 
-                0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x3c, 0x00
-            ]
+            data
         ]
 
         with canvas(device) as draw:
