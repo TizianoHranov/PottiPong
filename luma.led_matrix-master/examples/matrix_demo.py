@@ -19,8 +19,7 @@ from luma.core.legacy.font import proportional, CP437_FONT, TINY_FONT, SINCLAIR_
 def demo(n, block_orientation, rotate, inreverse):
     # create matrix device
     serial = spi(port=0, device=0, gpio=noop())
-    device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,
-                rotate=rotate or 0, blocks_arranged_in_reverse_order=inreverse)
+    device = max7219(serial, 4, 90, 0, true)
 
     print("Created device")
 
@@ -37,7 +36,7 @@ def demo(n, block_orientation, rotate, inreverse):
         # Note that "\0" is the zero-th character in the font (i.e the only one)
         legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
 
-    time.sleep(5000)
+    time.sleep(5)
 
     print("done with legacy.text")
 
