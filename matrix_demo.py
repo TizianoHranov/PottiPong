@@ -32,13 +32,14 @@ def main():
 
     while True:
 
+        # Open FIFO for reading
         try:
             with open(fifo, 'rb') as f:
-                # Read 128 bytes (32 integers)
-                data = f.read(128)
+                # Read data from FIFO
+                data = f.read(32)  # Read 32 bytes (1x32 matrix)
                 # Unpack 32 unsigned integers from the data buffer
                 integers = struct.unpack('32B', data)
-                # Process the received data
+                # Convert flat list to 2D array
                 matrix = [integers]
                 print(f"Received data: {matrix}")
         except FileNotFoundError:
