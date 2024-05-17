@@ -32,7 +32,7 @@ def main():
                 # Read data from FIFO
                 data = f.read(256)  # Read 256 bytes (32x8 matrix)
                 # Unpack 256 unsigned integers from the data buffer
-                points = struct.unpack('256i', data)
+                points = struct.unpack('256B', data)
                 # Convert flat list to 2D array
                 matrix = [[points[i + j*32] for i in range(32)] for j in range(8)]
                 print(f"Received data: {matrix}")
