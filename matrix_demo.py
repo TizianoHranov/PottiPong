@@ -26,7 +26,6 @@ def main():
                 # Unpack 32 unsigned integers from the data buffer
                 integers = struct.unpack('32B', data)
                 # Convert flat list to 2D array
-                matrix = [integers]
                 print(f"Received data: {matrix}")
 
                 # Draw received data on LED matrix

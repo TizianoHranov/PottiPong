@@ -9,7 +9,7 @@
 
 int main() {
     char *fifo = "my_fifo";
-    int data[1][32];
+    int data[32];
     char ack[10];
 
     // Create the named pipe (FIFO) if it doesn't exist
