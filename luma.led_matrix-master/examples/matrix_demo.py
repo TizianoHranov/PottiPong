@@ -20,7 +20,7 @@ def demo(n, block_orientation, rotate, inreverse):
     serial = spi(port=0, device=0, gpio=noop())
     device = max7219(serial, cascaded=n or 1, block_orientation=block_orientation,
                 rotate=rotate or 0, blocks_arranged_in_reverse_order=inreverse)
-                
+
     print("Created device")
 
     # start demo
@@ -42,7 +42,7 @@ def demo(n, block_orientation, rotate, inreverse):
         # Note that "\0" is the zero-th character in the font (i.e the only one)
         legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
 
-    time.sleep(5)
+    time.sleep(5000)
 
     msg = "Fast scrolling: Lorem ipsum dolor sit amet, consectetur adipiscing\
     elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\
