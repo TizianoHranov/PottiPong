@@ -3,6 +3,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/stat.h>  // Include this header for mkfifo
 
 int main() {
     char *fifo = "my_fifo";
@@ -10,7 +11,10 @@ int main() {
     char ack[10];
 
     // Create the named pipe (FIFO)
-    mkfifo(fifo, 0666);
+    if (mkfifo(fifo, 0666) == -1) {
+        perror("mkfifo");
+        exit(EXIT_FAILURE);
+    }
 
     // Initialize data with some values
     for (int i = 0; i < 32; i++) {
