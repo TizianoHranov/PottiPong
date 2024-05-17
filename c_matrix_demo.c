@@ -28,7 +28,7 @@ int main() {
         cnt++;
         for (int i = 0; i < 32; i++)
         {
-            data[0][i] = i+cnt;
+            data[i] = i+cnt;
         }
 
 
