@@ -44,10 +44,14 @@ def main():
         MY_CUSTOM_BITMAP_FONT = integers
 
         with canvas(device) as draw:
-            for y, row in enumerate(matrix):
-                for x, value in enumerate(row):
-                    if value:
-                        draw.point((x, y), fill="white")
+            #for y, row in enumerate(matrix):
+                #for x, value in enumerate(row):
+                    #if value:
+                        #draw.point((x, y), fill="white")
+            draw.point((16, 0), fill="white")
+            draw.point((31, 1), fill="white")
+            draw.point((0, 7), fill="white")
+            draw.point((0, 5), fill="white")
 
 if __name__ == "__main__":
     try:
