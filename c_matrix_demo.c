@@ -18,13 +18,15 @@ int main() {
         }
     }
 
-    // Initialize data with some values
-    for (int i = 0; i < 32; i++) {
-        data[0][i] = i;  // Example pattern
-    }
+    int cnt = 0;
 
     while (1) {
-        sleep(1);
+        // Initialize data with some values
+        for (int i = 0; i < 32; i++) {
+            data[0][i] = i;  // Example pattern
+        }
+
+
         // Open FIFO for writing
         int fd = open(fifo, O_WRONLY);
         if (fd == -1) {
@@ -39,24 +41,6 @@ int main() {
             exit(EXIT_FAILURE);
         }
         close(fd);
-
-        // Open FIFO for reading acknowledgment
-        fd = open(fifo, O_RDONLY);
-        if (fd == -1) {
-            perror("open");
-            exit(EXIT_FAILURE);
-        }
-
-        // Read acknowledgment from FIFO
-        if (read(fd, ack, sizeof(ack)) == -1) {
-            perror("read");
-            close(fd);
-            exit(EXIT_FAILURE);
-        }
-        close(fd);
-
-        // Print acknowledgment
-        printf("Received acknowledgment: %s\n", ack);
 
         // Delay for 1 second
         sleep(1);

@@ -46,17 +46,6 @@ def main():
             print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
             break
 
-        # Open FIFO for writing acknowledgment
-        try:
-            with open(fifo, 'wb') as f:
-                ack_message = b'ACK'
-                f.write(ack_message)
-        except FileNotFoundError:
-            print(f"Error: FIFO {fifo} not found. Please ensure it is created.")
-            break
-
-        time.sleep(1)
-
         MY_CUSTOM_BITMAP_FONT = integers
 
         with canvas(device) as draw:
