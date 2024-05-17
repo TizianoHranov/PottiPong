@@ -10,10 +10,12 @@ int main() {
     int data[1][32];
     char ack[10];
 
-    // Create the named pipe (FIFO)
-    if (mkfifo(fifo, 0666) == -1) {
-        perror("mkfifo");
-        exit(EXIT_FAILURE);
+    // Create the named pipe (FIFO) if it doesn't exist
+    if (access(fifo, F_OK) == -1) {
+        if (mkfifo(fifo, 0666) == -1) {
+            perror("mkfifo");
+            exit(EXIT_FAILURE);
+        }
     }
 
     // Initialize data with some values
