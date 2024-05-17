@@ -5,6 +5,8 @@
 #include <string.h>
 #include <sys/stat.h>  // Include this header for mkfifo
 
+//IT WORKED!!!!
+
 int main() {
     char *fifo = "my_fifo";
     int data[1][32];

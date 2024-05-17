@@ -18,7 +18,6 @@ import os
 import struct
 
 
-
 def main():
     # create matrix device
     serial = spi(port=0, device=0, gpio=noop())
