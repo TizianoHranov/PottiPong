@@ -23,12 +23,6 @@ def demo(n, block_orientation, rotate, inreverse):
 
     print("Created device")
 
-    # start demo
-    msg = "MAX7219 LED Matrix Demo"
-    print(msg)
-    show_message(device, msg, fill="white", font=proportional(CP437_FONT))
-    time.sleep(1)
-
     MY_CUSTOM_BITMAP_FONT = [
         [
             0x00, 0x00, 0x1e, 0x00, 0x00, 0x00, 0x00, 0x00, 
@@ -43,6 +37,8 @@ def demo(n, block_orientation, rotate, inreverse):
         legacy.text(draw, (0, 0), "\0", fill="white", font=MY_CUSTOM_BITMAP_FONT)
 
     time.sleep(5000)
+
+    print("done with legacy.text")
 
     msg = "Fast scrolling: Lorem ipsum dolor sit amet, consectetur adipiscing\
     elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut\
