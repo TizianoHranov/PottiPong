@@ -8,7 +8,6 @@
 int main() {
     char *fifo = "my_fifo";
     int data[32][8];
-    char ack[10];
 
     // Create the named pipe (FIFO) if it doesn't exist
     if (access(fifo, F_OK) == -1) {
@@ -22,14 +21,14 @@ int main() {
 
     while (1) {
         // Initialize data with some values
-        cnt = cnt % 0xff;
-        cnt++;
-        for (int i = 0; i < 32; i++) {
-            for (int j = 0; j < 8; j++) {
-                if(j%2 == 0){
-                    data[i][j] = 1;
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 32; x++) {  
+                if(x%2 == 0 && y%2 == 0){
+                    data[x][y] = 1;
+                } else if (x%2 != 0 && y%2 == 1){
+                    data[x][y] = 1;
                 } else {
-                    data[i][j] = 0;
+                    data[x][y] = 0;
                 }
             }
         }
