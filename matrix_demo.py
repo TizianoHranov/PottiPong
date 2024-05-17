@@ -57,7 +57,7 @@ def main():
 
         time.sleep(1)
 
-        MY_CUSTOM_BITMAP_FONT = data
+        MY_CUSTOM_BITMAP_FONT = integers
 
         with canvas(device) as draw:
             # Note that "\0" is the zero-th character in the font (i.e the only one)
